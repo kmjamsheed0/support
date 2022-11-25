@@ -8,17 +8,17 @@
 		$password = $_POST["password"];
 	}
 	
-	$sql = "SELECT agent_password from agent where agent_id='$username'";
+	$sql = "SELECT agent_password from support where agent_id='$username'";
 	$result = $conn->query($sql);        
 
     while($row = $result->fetch_assoc()) {
 		if($password == $row["agent_password"]){
-			echo "welcome you have successfully logeed in";
+			echo "welcome you have successfully logged in";
 			$_SESSION["username"] = $username;
 			header("Location: home.php");
 		}
     }
-	$sql = "SELECT client_password from client where client_id='$username'";
+	$sql = "SELECT client_password from ticket where client_id='$username'";
 	$result = $conn->query($sql);        
 
     while($row = $result->fetch_assoc()) {

@@ -75,9 +75,9 @@ tr:nth-child(even) {
             
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">Clients Information  
+                        <h1 class="page-head-line">Tickets Information  
 						<button class="btn" align="center"> 
-						<a href="addclient.php" class="btn">Add Client</a>
+						<a href="addTicket.php" class="btn">Add Ticket</a>
 						</button>
 						</h1>
                     </div>
@@ -89,13 +89,13 @@ tr:nth-child(even) {
 	
 	if($_SERVER["REQUEST_METHOD"] == "GET"){
 		
-		$client_id = $_GET["client_id"];	
+		$ticket_no = $_GET["ticket_no"];	
 	}
 	
 	//                       checking if agent is authorized to edit or not  
 	$temp_id="";
-	$master_id="ahmed";
-	$sql = "SELECT agent_id from client where client_id='$client_id'";
+	$master_id="admin";
+	$sql = "SELECT agent_id from ticket where ticket_no='$ticket_no'";
 	$result = $conn->query($sql);
 	while($row = $result->fetch_assoc()) {
 		$temp_id= $row['agent_id'];
@@ -104,7 +104,7 @@ tr:nth-child(even) {
 	if($_SESSION["username"]==($temp_id || $master_id)){
 		
 	
-	$sql = "SELECT * from client where client_id='$client_id'";
+	$sql = "SELECT * from ticket where ticket_no='$ticket_no'";
 	$result = $conn->query($sql);
 	
 	  echo "<div>\n";
@@ -116,7 +116,7 @@ tr:nth-child(even) {
 ?>
 <img class="profile-user-img img-responsive"  width="200px" height="200px" src="<?php echo "../project/uploads/".$images ?>" alt="User profile picture">
 
-<form action="updateClient.php" method="post" enctype="multipart/form-data">
+<form action="updateTicket.php" method="post" enctype="multipart/form-data">
 <input type="file" name="fileToUpload"><br>
 
 <?php
@@ -124,28 +124,22 @@ tr:nth-child(even) {
 
 
 		
-		echo "<label for=\"fname\">CLIENT ID</label>";
-	    echo "<input type=\"text\" client_id=\"fname\" name=\"client_id\" placeholder=\"clients id..\" value=\"$row[client_id]\">";
-		echo "<label for=\"fname\">CLIENT PASSWORD</label>";
-	    echo "<input type=\"text\" client_id=\"fname\" name=\"client_password\" placeholder=\"clients password..\" value=\"$row[client_password]\">";
-		echo "<label for=\"fname\">NAME</label>";
-	    echo "<input type=\"text\" client_id=\"fname\" name=\"name\" placeholder=\"clients name..\" value=\"$row[name]\">";
-		echo "<label for=\"fname\">GENDER</label>";
-		echo "<input type=\"text\" client_id=\"fname\" name=\"sex\" placeholder=\"clients gender..\" value=\"$row[sex]\">";
-		echo "<label for=\"fname\">BIRTH DATE</label>";
-		echo "<input type=\"text\" client_id=\"fname\" name=\"birth_date\" placeholder=\"clients Birth Date..\" value=\"$row[birth_date]\">";
-		echo "<label for=\"fname\">MARITIAL STATUS</label>";
-		echo "<input type=\"text\" client_id=\"fname\" name=\"marital_status\" placeholder=\"clients Maritial Status..\" value=\"$row[marital_status]\">";
-		echo "<label for=\"fname\">NID</label>";
-		echo "<input type=\"text\" client_id=\"fname\" name=\"nid\" placeholder=\"clients NID..\" value=\"$row[nid]\">";
-		echo "<label for=\"fname\">PHONE</label>";
-		echo "<input type=\"text\" client_id=\"fname\" name=\"phone\" placeholder=\"clients Phone..\" value=\"$row[phone]\">";
-		echo "<label for=\"fname\">ADDRESS</label>";
-		echo "<input type=\"text\" client_id=\"fname\" name=\"address\" placeholder=\"clients Address..\" value=\"$row[address]\">";
-		echo "<label for=\"fname\">POLICY ID</label>";
-		echo "<input type=\"text\" client_id=\"fname\" name=\"policy_id\" placeholder=\"policy id..\" value=\"$row[policy_id]\">";
-		echo "<label for=\"fname\">AGENT ID</label>";
-		echo "<input type=\"text\" client_id=\"fname\" name=\"agent_id\" placeholder=\"agent id..\" value=\"$row[agent_id]\">";
+		echo "<label for=\"fname\">Ticket No</label>";
+	    echo "<input type=\"text\" ticket_no=\"fname\" name=\"ticket_no\" placeholder=\"Ticket no\" value=\"$row[ticket_no]\">";
+		echo "<label for=\"fname\">Plugin</label>";
+	    echo "<input type=\"text\" ticket_no=\"fname\" name=\"plugin\" placeholder=\"plugin name..\" value=\"$row[plugin]\">";
+		echo "<label for=\"fname\">DATE</label>";
+		echo "<input type=\"text\" ticket_no=\"fname\" name=\"post_date\" placeholder=\" Date..\" value=\"$row[post_date]\">";
+		echo "<label for=\"fname\">Developer</label>";
+		echo "<input type=\"text\" ticket_no=\"fname\" name=\"developer\" placeholder=\"clients NID..\" value=\"$row[developer]\">";
+		echo "<label for=\"fname\">Count</label>";
+		echo "<input type=\"text\" ticket_no=\"fname\" name=\"count\" placeholder=\"count..\" value=\"$row[count]\">";
+		echo "<label for=\"fname\">Issue</label>";
+		echo "<input type=\"text\" ticket_no=\"fname\" name=\"issue\" placeholder=\"Issue..\" value=\"$row[issue]\">";
+		echo "<label for=\"fname\">Plugin ID</label>";
+		echo "<input type=\"text\" ticket_no=\"fname\" name=\"p_id\" placeholder=\"p id..\" value=\"$row[p_id]\">";
+		echo "<label for=\"fname\">Suport ID</label>";
+		echo "<input type=\"text\" ticket_no=\"fname\" name=\"agent_id\" placeholder=\"suport id..\" value=\"$row[agent_id]\">";
 		
 		
 
@@ -155,13 +149,13 @@ tr:nth-child(even) {
 			<input type="submit" value="UPDATE" name="submit">
 			</form>
 		<?php
-	echo "<a href='deleteClient.php?client_id=".$client_id."'>Delete Client</a>";
+	echo "<a href='deleteTicket.php?ticket_no=".$ticket_no."'>Delete Ticket</a>";
 	
 
 echo "</div>\n";
 echo "\n";
     }
-	}else{ echo "you are not authorized to edit this client";
+	}else{ echo "you are not authorized to edit this ticket";
 	}
 	
 	

@@ -73,31 +73,21 @@ $uniqueId2 = time().'-'.mt_rand();
                     
                 
 
-<form action="insertClient.php" method="post" enctype="multipart/form-data">
-Client ID:       <input type="text" name="client_id" value="<?php echo"$uniqueId"; ?>" required><br>
-Client Password: <input type="text" name="client_password" required><br>
-Name:            <input type="text" name="name" required><br>
-Image		     <input class="img" type="file" name="fileToUpload"/ required> </br>
-GENDER:          <input type="text" name="sex" required><br>
-Birth Date:      <input type="text" name="birth_date" required><br>
-Marital Status:  <input type="text" name="maritial_status" required><br>
-National ID:     <input type="text" name="nid" required><br>
-Phone:           <input type="text" name="phone" required><br>
-Address:         <input type="text" name="address" required><br>
-Policy ID:       <input type="text" name="policy_id" required><br>
+<form action="insertTicket.php" method="post" enctype="multipart/form-data">
+Ticket No:       <input type="text" name="ticket_no"  required><br>
+Plugin:          <input type="text" name="plugin" required><br>
+Image		     <input class="img" type="file" name="fileToUpload"> </br>
+Post Date:       <input type="text" name="post_date" required><br>
+Developer:       <input type="text" name="developer" required><br>
+Count:           <input type="number" name="count" required><br>
+Issue:           <input type="text" name="issue" required><br>
+Plugin ID:       <input type="text" name="p_id" required><br>
 Agent ID:        <input type="text" name="agent_id" value="<?php echo $_SESSION["username"]; ?>" required><br>
 
-<h3>Nominee Informations </h3>
+<h3>Developer Informations </h3>
 
-Nominee ID:    <input type="text" name="nominee_id" value="<?php echo"$uniqueId2"; ?>" required> <br>
-Name:          <input type="text" name="nominee_name" required><br>
-GENDER:        <input type="text" name="nominee_sex" required><br>
-Birth Date:    <input type="text" name="nominee_birth_date" required><br>
-National ID:   <input type="text" name="nominee_nid" required><br>
-Relationship:  <input type="text" name="nominee_relationship" required><br>
-Priority:      <input type="text" name="priority" required><br>
-Phone:         <input type="text" name="nominee_phone" required><br>
-
+Developer ID:  <input type="text" name="developer_id"  required> <br>
+Name:          <input type="text" name="name" required><br>
 
 <input type="submit">
 

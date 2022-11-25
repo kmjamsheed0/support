@@ -108,11 +108,11 @@ tr:nth-child(even) {
                                 <i class="fa fa-user fa-5x""></i>
                                 <h5>
 								<?php
-				                     $sql = "SELECT count(*) AS c FROM client";
+				                     $sql = "SELECT count(*) AS c FROM ticket";
 	                                 $result = $conn->query($sql);
 		
 	                                 while($row = $result->fetch_assoc()) {
-				                     echo "Total clients: ";
+				                     echo "Total Tickets: ";
 	                                 echo $row["c"];
 	                                 }
 				                     ?>
@@ -124,7 +124,7 @@ tr:nth-child(even) {
                         <div class="main-box mb-dull">
                             <a href="#">
 							 <i class="fa fa-dollar fa-5x"></i>
-                                <h5>
+                                <!-- <h5>
 		                             <?php
 				                     $sql = "SELECT count(*) AS c FROM payment";
 	                                 $result = $conn->query($sql);
@@ -135,7 +135,7 @@ tr:nth-child(even) {
 	                                 }
 				                     ?>
                                 
-								</h5>
+								</h5> -->
                             </a>
                         </div>
                     </div>
@@ -143,7 +143,7 @@ tr:nth-child(even) {
                         <div class="main-box mb-pink">
                             <a href="#">
                                <i class="fa fa-user-md fa-5x"></i>
-                                <h5>
+                                <!-- <h5>
 								<?php
 				                     $sql = "SELECT count(*) AS c FROM agent";
 	                                 $result = $conn->query($sql);
@@ -153,7 +153,7 @@ tr:nth-child(even) {
 	                                 echo $row["c"];
 	                                 }
 				                     ?>
-								</h5>
+								</h5> -->
                             </a>
                         </div>
                     </div>

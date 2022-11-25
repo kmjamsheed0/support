@@ -53,7 +53,7 @@ tr:nth-child(even) {
 </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Insert Client</title>
+    <title>Update Client</title>
     <!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
@@ -72,9 +72,9 @@ tr:nth-child(even) {
             
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">Insert Client
+                        <h1 class="page-head-line">Update Ticket
 						<button class="btn" align="center"> 
-                        <a href="addclient.php" class="btn">Add Client</a>
+                        <a href="addTicket.php" class="btn">Add Ticket</a>
                         </button>
 						</h1>
                     
@@ -82,81 +82,73 @@ tr:nth-child(even) {
 				
 				
 <?php
-   
-
-	    $client_id       = $_POST["client_id"];
-		$client_password = $_POST["client_password"];
-		$name            = $_POST["name"];
-		$sex             = $_POST["sex"];
-		$birth_date      = $_POST["birth_date"];
-		$maritial_status = $_POST["maritial_status"];
-		$nid             = $_POST["nid"];
-		$phone           = $_POST["phone"];
-		$address         = $_POST["address"];
-		$policy_id       = $_POST["policy_id"];
+$ticket_no = $plugin = $post_date = $developer = $count = $issue = $p_id = $agent_id ="";
+	
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+		
+		$ticket_no       = $_POST["ticket_no"];
+		$plugin 		 = $_POST["plugin"];
+		$post_date       = $_POST["post_date"];
+		$developer       = $_POST["developer"];
+		$count           = $_POST["count"];
+		$issue           = $_POST["issue"];
+		$p_id            = $_POST["p_id"];
 		$agent_id        = $_POST["agent_id"];
 		
-		
-		
-		$nominee_id              = $_POST["nominee_id"];
-		$nominee_name            = $_POST["nominee_name"];
-		$nominee_sex             = $_POST["nominee_sex"];
-		$nominee_birth_date      = $_POST["nominee_birth_date"];
-		$nominee_nid             = $_POST["nominee_nid"];
-		$nominee_relationship    = $_POST["nominee_relationship"];
-		$priority                = $_POST["priority"];
-		$nominee_phone           = $_POST["nominee_phone"];
-		
-		
+		if(isset($_POST['submit'])){
+$img_name = $_FILES["fileToUpload"]["name"];
+//$size = $_FILES['file']['size']
+//$type = $_FILES['file']['type']
+
+$tmp_name = $_FILES['fileToUpload']['tmp_name'];
+$error = $_FILES['fileToUpload']['error'];
+
+if (!empty($_FILES['fileToUpload']['name'])) {
 		$profileImage = basename($_FILES["fileToUpload"]["name"]);
 		$target_dir = "uploads/";
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$uploadOk = 1;
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-		// Check if image file is a act
-			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-			if($check !== false) {
-				echo "Cliensts profile picture uploaded- " . $check["mime"] . "."; echo '</br>';
-				$uploadOk = 1;
-			} else {
-				echo "File is not an image."; echo '</br>';
-				$uploadOk = 0;
-			}
 		
-		// Check file size
 		$uploadOk == 1;
 		// Check if $uploadOk is set to 0 by an error
 		if ($uploadOk == 0) {
-			echo "Sorry, your file was not uploaded.";  echo '</br>';
+			echo "Sorry, your file was not uploaded.";
 		// if everything is ok, try to upload file
 		} else {
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 			//	echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 			} else {
-				echo "Sorry, there was an error uploading your file.";   echo '</br>';
+				echo "Sorry, there was an error uploading your file.";
 			}
 		}
 		
-	$sql = "INSERT INTO client "."VALUES('$client_id', '$client_password', '$name', '$sex', '$birth_date', '$maritial_status', '$nid', '$phone', '$address', '$policy_id', '$agent_id','$profileImage')";
-	
-	if ($conn->query($sql) === true) {
-			echo "New Client ADDED";  echo '</br>';
+		
+		
+		
+		
+			$sql = "UPDATE ticket set ticket_no='$ticket_no' ,plugin='$plugin', image='$profileImage' ,post_date='$post_date' ,developer='$developer',count='$count',issue='$issue',p_id='$p_id',agent_id='$agent_id' where ticket_no='$ticket_no'";
+		
+		if ($conn->query($sql) === true) {
+			echo "Client record updated successfully";
 		} else {
-			echo "Error: " . $sql . "<br>" . $conn->error;  echo '</br>';
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+		
+		}else {
+			
+			$sql = "UPDATE ticket set ticket_no='$ticket_no' ,plugin='$plugin' ,post_date='$post_date' ,developer='$developer',count='$count',issue='$issue',p_id='$p_id',agent_id='$agent_id' where ticket_no='$ticket_no'";
+		
+		if ($conn->query($sql) === true) {
+			echo "Client record updated successfully";
+		} else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+		}	
+		}
 		}
 		
 		
-		
-		/// NOMINEE BEING ADDED
-   $sql = "INSERT INTO nominee "."VALUES('$nominee_id', '$client_id', '$nominee_name', '$nominee_sex', '$nominee_birth_date', '$nominee_nid', '$nominee_relationship','$priority', '$nominee_phone')";
-	
-	if ($conn->query($sql) === true) {
-			echo "New Nominee ADDED";  echo '</br>';
-		} else {
-			echo "Error: " . $sql . "<br>" . $conn->error;  echo '</br>';
-		}
-		
-	
 ?>
 
 
@@ -168,6 +160,7 @@ tr:nth-child(even) {
         </div>
         <!-- /. PAGE WRAPPER  -->
 
+		
 
     </div>
     <!-- /. WRAPPER  -->

@@ -88,7 +88,7 @@ tr:nth-child(even) {
 				     
 						   
 						<button class="btn" align="center"> 
-						<a href="addClient.php" class="btn">Add Ticket</a>
+						<a href="addticket.php" class="btn">Add Ticket</a>
 						</button>
 						</h1>
                     </div>
@@ -98,7 +98,7 @@ tr:nth-child(even) {
                 <!-- /. ROW  -->
 <?php
 
-	$sql = "SELECT client_id,name,birth_date,nid,phone,address,agent_id FROM client";
+	$sql = "SELECT ticket_no,plugin,post_date,developer,count,issue,agent_id FROM ticket";
 	$result = $conn->query($sql);
 	
 	echo "<table class=\"table\">\n";
@@ -107,8 +107,8 @@ tr:nth-child(even) {
     echo "    <th>Plugin</th>\n";
     echo "    <th>Date</th>\n";
     echo "    <th>Assigned to</th>\n";
-    echo "    <th>By</th>\n";
-	echo "    <th>ADDRESS</th>\n";
+    echo "    <th>Assigned Count</th>\n";
+	echo "    <th>Issue</th>\n";
 	echo "    <th>STATUS</th>\n";
 	echo "    <th>UPDATE</th>\n";
     echo "  </tr>";
@@ -118,17 +118,17 @@ tr:nth-child(even) {
 	while($row = $result->fetch_assoc()) {
 		
 		echo "<tr>\n";
-		echo "    <td>".$row["client_id"]."</td>\n";
-		echo "    <td>".$row["name"]."</td>\n";
-		echo "    <td>".$row["birth_date"]."</td>\n";
-		echo "    <td>".$row["nid"]."</td>\n";
-		echo "    <td>".$row["agent_id"]."</td>\n";
-		echo "    <td>".$row["address"]."</td>\n";
-		echo "    <td>"."<a href='clientStatus.php?client_id=".$row["client_id"]. "'>Status</a>"."</td>\n";
-		if($row["agent_id"]== $username || "ahmed" == $username){
-			echo "<td>"."<a href='editClient.php?client_id=".$row["client_id"]. "'>Edit</a>"."</td>\n";
+		echo "    <td>".$row["ticket_no"]."</td>\n";
+		echo "    <td>".$row["plugin"]."</td>\n";
+		echo "    <td>".$row["post_date"]."</td>\n";
+		echo "    <td>".$row["developer"]."</td>\n";
+		echo "    <td>".$row["count"]."</td>\n";
+		echo "    <td>".$row["issue"]."</td>\n";
+		echo "    <td>"."<a href='ticketStatus.php?ticket_no=".$row["agent_id"]. "'>Status</a>"."</td>\n";
+		if($row["agent_id"]== $username || "admin" == $username){
+			echo "<td>"."<a href='editTicket.php?ticket_no=".$row["ticket_no"]. "'>Edit</a>"."</td>\n";
 		}else {
-			echo "<td>"."<a class=\"dis\" href='editClient.php?client_id=".$row["client_id"]. "'>Edit</a>"."</td>\n";
+			echo "<td>"."<a class=\"dis\" href='editTicket.php?ticket_no=".$row["ticket_no"]. "'>Edit</a>"."</td>\n";
 		}
 
 	}

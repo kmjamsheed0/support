@@ -37,9 +37,9 @@ CREATE TABLE IF NOT EXISTS `support` (
 -- Dumping data for table `support`
 --
 
-INSERT INTO `agent` (`agent_id`, `agent_password`, `name`, `phone`) VALUES
+INSERT INTO `support` (`agent_id`, `agent_password`, `name`, `phone`) VALUES
 ('akhil', 'akhil', 'Akhil P','01598745682'),
-('admin', 'admin', 'Super User', 'null', 'null');
+('admin', 'admin', 'Super User', 'null');
 
 -- --------------------------------------------------------
 
@@ -73,8 +73,7 @@ CREATE TABLE IF NOT EXISTS `ticket` (
 CREATE TABLE IF NOT EXISTS `developer` (
   `developer_id` varchar(200) NOT NULL,
   `ticket_no` varchar(100) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `phone` varchar(50) NOT NULL
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -89,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `developer` (
 CREATE TABLE IF NOT EXISTS `plugin` (
   `p_id` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `owner` varchar(50) NOT NULL,
+  `owner` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -104,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `plugin` (
 -- Indexes for table `agent`
 --
 ALTER TABLE `support`
- ADD PRIMARY KEY (`agent_id`), ADD UNIQUE KEY `agent_id` (`agent_id`);
+ ADD PRIMARY KEY (`agent_id`);
 
 --
 -- Indexes for table `client`

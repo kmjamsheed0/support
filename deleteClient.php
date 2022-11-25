@@ -72,9 +72,9 @@ tr:nth-child(even) {
             
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">Client Status
+                        <h1 class="page-head-line">Ticket Status
 						<button class="btn" align="center"> 
-                        <a href="addclient.php" class="btn">Add Client</a>
+                        <a href="addTicket.php" class="btn">Add Ticket</a>
                         </button>
 						</h1>
                     
@@ -82,33 +82,24 @@ tr:nth-child(even) {
 				
 				
 <?php
-$client_id  = $_GET["client_id"];
+$ticket_no  = $_GET["ticket_no"];
 
-// sql to delete client
-$sql = "DELETE FROM client WHERE client_id='$client_id'";
+// sql to delete ticket
+$sql = "DELETE FROM ticket WHERE ticket_no='$ticket_no'";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Client deleted successfully";  echo '</br>';
+    echo "Ticket deleted successfully";  echo '</br>';
 } else {
-    echo "Error deleting Client: " . $conn->error;  echo '</br>';
+    echo "Error deleting Ticket: " . $conn->error;  echo '</br>';
 }
 
-// sql to delete nominees
-$sql = "DELETE FROM nominee WHERE client_id='$client_id'";
+// sql to delete developer
+$sql = "DELETE FROM developer WHERE ticket_no='$ticket_no'";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Nominees deleted successfully";  echo '</br>';
+    echo "Develper deleted successfully";  echo '</br>';
 } else {
-    echo "Error deleting Nominees: " . $conn->error;  echo '</br>';
-}
-
-// sql to delete payments
-$sql = "DELETE FROM payment WHERE client_id='$client_id'";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Payments deleted successfully";  echo '</br>';
-} else {
-    echo "Error deleting Payments: " . $conn->error;  echo '</br>';
+    echo "Error deleting developer: " . $conn->error;  echo '</br>';
 }
       
 $conn->close();		
